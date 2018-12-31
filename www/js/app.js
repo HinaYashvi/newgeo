@@ -65,6 +65,9 @@ function openLOC(){
     console.error("The following error occurred: "+error);
 	});   
 }
+$("#openclick").click(function(){
+	getLatlong();
+});
 function onRequestSuccess(success){
     if(success){
       app.router.navigate("/current-location/");
@@ -76,10 +79,9 @@ function onRequestFailure(error){
    }
 }
 
-$$(document).on('page:init', '.page[data-name="current-location"]', function (e) { 
+function getLatlong() { 
 	navigator.geolocation.getCurrentPosition(onSuccess, onError,{ maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
-});
-
+}
 
 function onSuccess(position){
     alert("in function");
